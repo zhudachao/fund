@@ -1,0 +1,64 @@
+<assembly
+	xmlns="http://maven.apache.org/plugins/maven-assembly-plugin/assembly/1.1.2"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/plugins/maven-assembly-plugin/assembly/1.1.2 http://maven.apache.org/xsd/assembly-1.1.2.xsd">
+	<id>linux</id>
+	<formats>
+		<format>tar.gz</format>
+	</formats>
+	<includeBaseDirectory>false</includeBaseDirectory> <!-- disable the creation of root's distribution dir in the archive -->
+
+	<fileSets>
+		<!-- 配置文件 -->
+		<fileSet>
+			<directory>src/main/resources</directory>
+			<excludes></excludes>
+			<includes>
+				<include>application*.properties</include>
+				<include>application*.yml</include>
+				<include>log4j2.xml</include>
+			</includes>
+			<fileMode>0644</fileMode>
+			<outputDirectory>${project.artifactId}/etc</outputDirectory>
+		</fileSet>
+		<!-- 脚本 -->
+		<fileSet>
+			<directory>bin</directory>
+			<includes>
+				<include>*.sh</include>
+				<include>*.bat</include>
+			</includes>
+			<fileMode>0755</fileMode>
+			<outputDirectory>${project.artifactId}/bin</outputDirectory>
+		</fileSet>
+		<!-- jar包 -->
+		<fileSet>
+			<directory>target</directory>
+			<outputDirectory>${project.artifactId}/lib</outputDirectory>
+			<includes>
+				<include>*.jar</include>
+			</includes>
+		</fileSet>
+		<!-- 日志配置 -->
+		<fileSet>
+			<directory>src/main/resources</directory>
+			<includes>
+				<include>log4j2.xml</include>
+			</includes>
+			<outputDirectory>${project.artifactId}/logs</outputDirectory>
+			<fileMode>0755</fileMode>
+			<excludes>
+				<exclude>**/*</exclude>
+			</excludes>
+		</fileSet>
+	</fileSets>
+	  <dependencySets>
+        <dependencySet>
+            <outputDirectory>${project.artifactId}/lib</outputDirectory>
+            <scope>runtime</scope>
+            <excludes>
+                <exclude>${groupId}:${artifactId}</exclude>
+            </excludes>
+        </dependencySet>
+    </dependencySets>
+</assembly>

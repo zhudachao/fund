@@ -1,0 +1,38 @@
+server:
+  port: 8088
+spring:
+  datasource:
+    url: jdbc:mysql://192.168.218.23:3306/fund?useUnicode=true&characterEncoding=UTF-8&useSSL=false
+    username: root
+    password: 123456
+    driver-class-name: com.mysql.jdbc.Driver
+    type: com.alibaba.druid.pool.DruidDataSource
+      
+  fund:  
+    proxyIp: 
+    proxyPort: 
+    postUrl: https://172.100.11.48:19003/gateway/
+    isHttps: false
+    proxy: false
+#图标
+  main:
+    banner-mode: console
+          
+    
+
+    
+# 可将 com.dao包下的dao接口的SQL语句打印到控制台，学习MyBatis时可以开启
+logging:
+  level:
+    com.vista.mapper: DEBUG
+    
+pagehelper:
+  helper-dialect: mysql
+  reasonable: true
+  support-methods-arguments: true
+  params: count==countSql
+  page-size-zero: true
+
+
+    
+    

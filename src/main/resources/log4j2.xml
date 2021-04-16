@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="WARN">
+	<properties>
+		<property name="LOG_HOME">./logs</property>
+		<property name="buffer_size">1048576</property>
+		<property name="enable_log_location">true</property>
+		<property name="boot_pattern">
+            <![CDATA[ [%date{yyyy-MM-dd HH:mm:ss.SSS}][%thread][%level][%class][%line]:%message%n ]]>
+		</property>
+		<property name="link_pattern">
+            <![CDATA[ [%date{yyyy-MM-dd HH:mm:ss.SSS}][%thread][%level][%class][%line]:%message%n ]]>
+		</property>
+		<property name="busi_pattern">
+            <![CDATA[ [%date{yyyy-MM-dd HH:mm:ss.SSS}][%thread][%level][%class][%line]:%message%n ]]>
+		</property>
+		<property name="default_pattern">
+            <![CDATA[ [%date{yyyy-MM-dd HH:mm:ss.SSS}][%thread][%level][%class][%line]:%message%n ]]>
+		</property>
+	</properties>
+
+	<Appenders>
+
+		<Console name="Console" target="SYSTEM_OUT">
+			<PatternLayout
+				pattern="%d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n" />
+		</Console>
+
+
+		<RollingRandomAccessFile name="default"
+			fileName="${LOG_HOME}/default.log"
+			filePattern="${LOG_HOME}/default.%d{yyyy-MM-dd}-%i.log.gz"
+			append="true">
+			<PatternLayout pattern="${default_pattern}" />
+			<Filters>
+				<ThresholdFilter level="info" onMatch="ACCEPT"
+					onMismatch="NEUTRAL" />
+			</Filters>
+			<Policies>
+				<TimeBasedTriggeringPolicy />
+				<SizeBasedTriggeringPolicy size="512MB" />
+			</Policies>
+			<DefaultRolloverStrategy min="1" max="99" />
+		</RollingRandomAccessFile>
+		<RollingRandomAccessFile name="boot"
+			fileName="${LOG_HOME}/boot.log"
+			filePattern="${LOG_HOME}/boot.log.%d{yyyy-MM-dd}-%i.gz"
+			immediateFlush="false" bufferSize="${buffer_size}">
+			<PatternLayout pattern="${boot_pattern}" />
+			<Policies>
+				<TimeBasedTriggeringPolicy />
+				<SizeBasedTriggeringPolicy size="512MB" />
+			</Policies>
+			<DefaultRolloverStrategy min="1" max="99" />
+		</RollingRandomAccessFile>
+
+		<RollingRandomAccessFile name="link"
+			fileName="${LOG_HOME}/link.log"
+			filePattern="${LOG_HOME}/link.log.%d{yyyy-MM-dd}-%i.gz"
+			immediateFlush="false" bufferSize="${buffer_size}">
+			<PatternLayout pattern="${link_pattern}" />
+			<Policies>
+				<TimeBasedTriggeringPolicy />
+				<SizeBasedTriggeringPolicy size="512MB" />
+			</Policies>
+			<DefaultRolloverStrategy min="1" max="99" />
+		</RollingRandomAccessFile>
+
+		<RollingRandomAccessFile name="busi"
+			fileName="${LOG_HOME}/busi.log"
+			filePattern="${LOG_HOME}/busi.log.%d{yyyy-MM-dd}-%i.gz"
+			immediateFlush="false" bufferSize="${buffer_size}">
+			<PatternLayout pattern="${busi_pattern}" />
+			<Policies>
+				<TimeBasedTriggeringPolicy />
+				<SizeBasedTriggeringPolicy size="512MB" />
+			</Policies>
+			<DefaultRolloverStrategy min="1" max="99" />
+		</RollingRandomAccessFile>
+	</Appenders>
+	<Loggers>
+
+		<!--mybatis debug log -->
+		<AsyncLogger name="log4j.logger.org.mybatis" level="debug" 
+			additivity="false" includeLocation="${enable_log_location}">
+			<!--<appender-ref ref="Console"/> -->
+			<AppenderRef ref="default" />
+		</AsyncLogger>
+		<AsyncLogger name="log4j.logger.java.sql" level="debug"
+			additivity="false" includeLocation="${enable_log_location}">
+			<AppenderRef ref="default" />
+		</AsyncLogger>
+		<AsyncLogger name="log4j.logger.java.sql.Connection"
+			level="debug" additivity="false" includeLocation="${enable_log_location}">
+			<AppenderRef ref="default" />
+		</AsyncLogger>
+		<AsyncLogger name="log4j.logger.java.sql.Statement"
+			level="debug" additivity="false" includeLocation="${enable_log_location}">
+			<AppenderRef ref="default" />
+		</AsyncLogger>
+		<AsyncLogger
+			name="log4j.logger.java.sql.PreparedStatement" level="debug"
+			additivity="false" includeLocation="${enable_log_location}">
+			<AppenderRef ref="default" />
+		</AsyncLogger>
+		<AsyncLogger name="log4j.logger.java.sql.ResultSet"
+			level="debug" additivity="false" includeLocation="${enable_log_location}">
+			<AppenderRef ref="default" />
+		</AsyncLogger>
+		<AsyncLogger name="com.vista.mapper.*"
+			level="debug" additivity="false" includeLocation="${enable_log_location}">
+			<AppenderRef ref="default" />
+		</AsyncLogger>
+
+		<AsyncLogger name="link" level="DEBUG" additivity="false" includeLocation="${enable_log_location}">
+			<AppenderRef ref="link" />
+		</AsyncLogger>
+		<AsyncLogger name="boot" level="DEBUG" additivity="false" includeLocation="${enable_log_location}">
+			<AppenderRef ref="boot" />
+		</AsyncLogger>
+
+		<AsyncLogger name="busi" level="DEBUG" additivity="false" includeLocation="${enable_log_location}">
+			<AppenderRef ref="busi" />
+		</AsyncLogger>
+
+		<!--TRACE、DEBUG、INFO、WARN、ERROR和FATAL -->
+
+		<Root level="INFO">
+			<AppenderRef ref="Console" />
+		</Root>
+
+	</Loggers>
+</Configuration>

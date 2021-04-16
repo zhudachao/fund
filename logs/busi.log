@@ -1,0 +1,2 @@
+[2021-03-01 15:53:09.899][http-nio-8088-exec-3][INFO][com.vista.service.FundService][112]:基金代码：150270 历史记录表登记完成,登记条数：3
+[2021-03-01 15:54:04.017][http-nio-8088-exec-4][INFO][com.vista.service.FundService][112]:基金代码：161725 历史记录表登记完成,登记条数：32
