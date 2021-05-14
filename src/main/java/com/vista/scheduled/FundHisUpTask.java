@@ -4,7 +4,7 @@ import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.vista.service.FundService;
+import com.vista.service.FundDataService;
 import com.vista.utils.DateUtil;
 import com.vista.utils.LogUtils;
 
@@ -13,7 +13,7 @@ public class FundHisUpTask implements ScheduledOfTask {
     private Logger logger = LogUtils.getBusiLogger();
     
     @Autowired
-    private FundService service;
+    private FundDataService service;
     
     @Override
     public void execute() {

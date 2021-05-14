@@ -8,14 +8,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import com.vista.service.FundService;
+import com.vista.service.FundDataService;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest
 public class ServiceTest {
 	
 	@Autowired
-	private FundService service;
+	private FundDataService service;
 	
 	@Test
 	public void test() {

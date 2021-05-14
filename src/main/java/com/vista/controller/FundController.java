@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.alibaba.fastjson.JSONObject;
-import com.vista.service.FundService;
+import com.vista.service.FundDataService;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
@@ -23,7 +23,7 @@ import io.swagger.annotations.ApiOperation;
 public class FundController {
 
 	@Autowired
-	private FundService fundService;
+	private FundDataService fundService;
 	
 	@ApiOperation(value = "基金列表查询", notes = "基金列表查询")
 	@GetMapping("/fundlist")	

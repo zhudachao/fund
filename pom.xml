@@ -13,7 +13,7 @@
 	<artifactId>fund</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>fund</name>
-	<description>基金统计</description>
+	<description>基金</description>
 
 	<properties>
 		<java.version>1.8</java.version>

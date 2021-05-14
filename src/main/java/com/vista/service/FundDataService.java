@@ -24,7 +24,7 @@ import com.vista.utils.LogUtils;
 import com.vista.utils.StringUtils;
 
 @Service
-public class FundService {
+public class FundDataService {
 
 	private static final Logger logger = LogUtils.getBusiLogger();
 
@@ -33,7 +33,7 @@ public class FundService {
 	@Autowired
 	private FundDataMapper fundDataMapper;
 	@Autowired
-	private JsoupService jsoupService;
+	private FundListService fundListService;
 
 	// 查询所有基金数据并登记
 	public String[][] queryFundList() {
@@ -59,7 +59,7 @@ public class FundService {
 
 	// 根据基金代码登记详细信息
 	public void updFundInfoByCode(String code) {
-		FundList fundList = jsoupService.getInfo(code);
+		FundList fundList = fundListService.getInfo(code);
 		fundListMapper.updateFundList(fundList);
 	}
 
@@ -68,7 +68,7 @@ public class FundService {
 		List<String> codes = fundListMapper.findFundCodeListByCatagoryAndRiskLevel(catagroy);
 		logger.info("基金类型:{},基金代码列表：{}", catagroy, codes);
 		for (String code : codes) {
-			FundList fundList = jsoupService.getInfo(code);
+			FundList fundList = fundListService.getInfo(code);
 			fundListMapper.updateFundList(fundList);
 		}
 	}

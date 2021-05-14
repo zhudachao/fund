@@ -15,7 +15,7 @@ import com.vista.utils.HttpUtils;
 import com.vista.utils.LogUtils;
 
 @Service
-public class JsoupService {
+public class FundListService {
 
 	private static final Logger logger = LogUtils.getBusiLogger();
 
@@ -58,8 +58,6 @@ public class JsoupService {
 
 	}
 
-	// public static void main(String[] args) throws IOException {
-	// getInfo();
-	// }
+	
 
 }

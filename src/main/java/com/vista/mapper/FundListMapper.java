@@ -35,7 +35,8 @@ public interface FundListMapper {
 	@Select("select code from fund_list where catagory = #{catagory} and risk_level IS NULL")
 	List<String> findFundCodeListByCatagoryAndRiskLevel(String catagory);
 	
-	
+	@Select("select * from fund_list")
+	List<FundList> findAll();
 	
 	
 }
